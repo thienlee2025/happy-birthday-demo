@@ -90,15 +90,22 @@
 					</div>
 					<div class="card2">
 						<div class="card2-content">
-							<h3>Gửi chị!</h3>
-							<h2>
-								Hôm nay là một ngày đặc biệt đối với một người đặc biệt nì. Chúc
-								chị có một ngày sinh nhật thật ý nghĩa, vui vẻ, hạnh phúc bên
-								gia đình và bạn bè. Chúc chị sang tuổi mới sẽ mang đến cho chị 
-								nhiều may mắn, niềm vui và những cơ hội tuyệt vời. 
-								Chúc chị sớm tốt nghiệp như ý, tìm được công việc mơ ước 
-								và luôn hạnh phúc trong cuộc sống💕
+							<h3>Gửi cậu!</h3>
+							<!-- ... bên trong .card2-content ... -->
+							<h2 id="wishText">
+							Hôm nay là một ngày thật đặc biệt dành cho một người thật đặc biệt. 
+							Chúc cậu có một sinh nhật thật ý nghĩa, ngập tràn niềm vui và hạnh 
+							phúc bên gia đình cùng bạn bè. Bước sang tuổi mới, mong rằng cậu sẽ 
+							luôn gặp nhiều may mắn, giữ mãi nụ cười rạng rỡ, sớm chạm đến những 
+							ước mơ của mình và gặt hái nhiều thành công trên con đường phía 
+							trước. Cậu xứng đáng với tất cả những điều tuyệt vời nhất 💕
 							</h2>
+
+							<!-- BÁNH KEM Ở DƯỚI TỜ GIẤY -->
+							<div class="letter-cake">
+							<!-- Đặt file GIF/WEBP bánh kem có nến vào thư mục dự án và sửa tên file tại đây -->
+							<img src="cake-candle.gif" alt="Birthday cake with candles">
+							</div>
 							<div class="imageCute2">
 								<img src="cute2.png" alt="" />
 							</div>
@@ -143,4 +150,39 @@
 			boxmail.classList.remove('active');
 		});
 	</script>
+	<script>
+  /* --- Typewriter cho nội dung lời chúc --- */
+  /* --- Typewriter reset mỗi lần mở --- */
+function runTypewriter(){
+  const el = document.getElementById('wishText');
+  if(!el) return;
+  const full = el.dataset.fulltext || el.textContent.trim();
+  el.dataset.fulltext = full;
+  el.textContent = '';
+
+  let i = 0;
+  const speed = 20; // ms/ ký tự
+  (function type(){
+    if(i <= full.length){
+      el.textContent = full.slice(0, i++);
+      setTimeout(type, speed);
+    }
+  })();
+}
+
+// Khi bấm phong bì để mở thiệp
+mailBox.onclick = function () {
+  mailBox.classList.toggle('active');
+  boxmail.classList.add('active');
+  setTimeout(runTypewriter, 300);
+};
+
+// Khi đóng thiệp (ấn X)
+close.addEventListener('click', function () {
+  boxmail.classList.remove('active');
+});
+
+</script>
+
 </html>
+2

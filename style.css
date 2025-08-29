@@ -867,7 +867,7 @@ span{
     opacity: 0;
     visibility: hidden;
     animation: envelope 1s forwards;
-    animation-delay: 11.5s;
+    animation-delay: 7s;
     z-index: 100000000;
 }
 .container .mail .fa-envelope{
@@ -933,7 +933,7 @@ span{
     top: 210px;
     left: -100px;
     animation: cute 3s infinite ease-in-out;
-    animation-delay: 13s;
+    animation-delay: 7s;
 }
 @keyframes cute{
     0%{
@@ -984,7 +984,7 @@ span{
     right: -100px;
     transform: scaleX(-1);
     animation: cute2 3s infinite ease-in-out;
-    animation-delay: 12s;
+    animation-delay: 6s;
 }
 @keyframes cute2{
     0%{
@@ -1154,19 +1154,16 @@ span{
     transform: translate(20px, 20px);
     box-shadow: -1px -1px 5px rgb(0, 0, 0, 0.4);
 }
-.boxMail .boxMail-container .card2 h3{
+.boxMail .boxMail-container .card2 h3 {
     font-family: 'Dancing Script', cursive;
-    padding: 20px 0px 10px 60px;
-    opacity: 0;
-    visibility: hidden;
     font-size: 25px;
+    font-weight: 700;
     text-shadow: 0 0 8px red;
+    opacity: 1;          /* hiện ngay */
+    visibility: visible; /* không ẩn */
+    padding: 20px 0px 10px 60px;
 }
-.boxMail .boxMail-container .card2:hover h3{
-    animation: texth3 3s forwards;
-    animation-delay: 2s;
-    transition: 1s;
-}
+
 @keyframes texth3{
     0%{
         opacity: 1;
@@ -1179,18 +1176,19 @@ span{
         padding: 20px 0px 10px 152px; 
     }
 }
-.boxMail .boxMail-container .card2 h2{
-    font-family: 'Dancing Script', cursive;
-    padding: 0px 20px;
-    text-indent: 20px;
-    font-size: 17px;
-    opacity: 0;
+/* Chữ trong thiệp rõ nét hơn */
+.boxMail .boxMail-container .card2 h2 {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;        /* giống hệt "Gửi cậu!" */
+  padding: 0 20px;
+  text-indent: 20px;
+  font-size: 17px;         /* to hơn chút để dễ đọc */
+  line-height: 34px;
+  color: #222;
+  opacity: 1;
 }
-.boxMail .boxMail-container .card2:hover h2{
-    animation: texth2 2s forwards;
-    animation-delay: 4s;
-    transition: 1s;
-}
+
+
 @keyframes texth2{
     0%{
         opacity: 0;
@@ -1199,19 +1197,16 @@ span{
         opacity: 1;
     }
 }
-.boxMail .boxMail-container .card2 .card2-content .imageCute2{
+.boxMail .boxMail-container .card2 .card2-content .imageCute2 {
     position: absolute;
     top: 5px;
     left: 20px;
-    opacity: 0;
-    transition: 1s;
+    opacity: 1;           /* hiện ngay */
+    visibility: visible;  /* không bị ẩn */
+    animation: cute3 1s linear infinite; /* giữ hiệu ứng lắc lắc */
 }
-.boxMail .boxMail-container .card2 .card2-content:hover .imageCute2{
-    animation: cute3 1s linear infinite,
-                cute4 3s 2s forwards;
-    animation-delay: 2s;
-    transition: 1s;
 }
+
 @keyframes cute3{
     0%{
         opacity: 1;
@@ -1275,3 +1270,84 @@ span::before{
     }
 }
 /* ------hết hiệu ứng di chuyển chuột----- */
+/* GIF bánh kem lớn, lệch phải */
+.letter-cake {
+  position: absolute;
+  right: 20px;   /* khoảng cách mép phải */
+  bottom: 20px;  /* khoảng cách mép dưới */
+}
+
+.letter-cake img {
+  width: 120px;   /* vừa phải, không quá to */
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+}
+
+
+
+}
+@keyframes cakeBob{
+  0%,100%{ transform: translateY(0); }
+  50%    { transform: translateY(-6px); }
+}
+/* === Nền giấy khớp nền GIF === */
+:root{
+  --paper-pink: #ff8b8b;         /* nền khớp màu GIF */
+  --paper-line: rgba(255,255,255,0.2); /* dòng kẻ trắng mờ nhẹ */
+}
+
+.boxMail .boxMail-container .card2 .card2-content{
+  background:
+    linear-gradient(var(--paper-pink), var(--paper-pink)) padding-box,
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 36px,
+      var(--paper-line) 36px 37px,
+      transparent 37px 38px
+    );
+  border: 2px solid #f1b6c7;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.2), inset 0 0 0 1px rgba(255,255,255,.25);
+}
+.boxMail .boxMail-container .card2 .card2-content{
+  background:
+    linear-gradient(var(--paper-pink), var(--paper-pink)) padding-box,
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 36px,
+      var(--paper-line) 36px 37px,
+      transparent 37px 38px
+    );
+  border: none;         /* bỏ viền */
+  border-radius: 0;     /* phẳng góc (hoặc giữ bo nếu thích) */
+  box-shadow: none;     /* bỏ bóng đen */
+}
+
+/* ÉP gấu hiện ngay & LẮC LIÊN TỤC – không cần hover */
+.boxMail .boxMail-container .card2 .card2-content .imageCute2,
+.boxMail .boxMail-container .card2 .card2-content .imageCute2 img{
+  display: inline-block;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
+
+  /* ép toàn bộ thông số animation */
+  animation-name: cute3 !important;
+  animation-duration: 0.8s !important;
+  animation-timing-function: ease-in-out !important;
+  animation-iteration-count: infinite !important;
+  animation-delay: 0s !important;
+  transform-origin: 50% 50% !important;
+}
+
+/* Ngay cả khi :hover cũng KHÔNG thay đổi animation */
+.boxMail .boxMail-container .card2 .card2-content:hover .imageCute2{
+  animation-name: cute3 !important;
+  animation-duration: 0.8s !important;
+  animation-iteration-count: infinite !important;
+}
+
+
